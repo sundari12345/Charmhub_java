@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="CharmHub.css" rel="stylesheet" type="text/css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Allison&family=Barlow+Condensed&family=Bungee+Inline&family=DM+Sans:opsz,wght@9..40,300;9..40,500&family=Diphylleia&family=Fjalla+One&family=Lato:wght@300&family=Lugrasimo&family=M+PLUS+Rounded+1c:wght@100&family=Noto+Sans&family=Poppins:wght@200;300&family=Quattrocento&family=Quicksand:wght@300&family=Roboto:wght@100;500&family=Source+Sans+3:wght@200;400&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/75dcd704e3.js" crossorigin="anonymous"></script>
+</head>
+<body>
+	<header class = "header-list"> 
+		<span class = "CharmHub">Charmhub</span> 
+	</header>
+	<section class = "myAccountPage myProfilePage">
+	    <span class = "feeds_heading-navigation">My Account > My Address</span>
+	    <div class = "my_profile_container" id = "my_address_container">
+	        <input type = "hidden" name = "user_id" value = "6" id = "user_id">
+	        <span class = "feeds_heading margin_bottom">My Address</span>
+	        <span class = "field_tags"  >Address*</span>
+	    	<span class = "field_tags" >Landmark*</span>
+	    	<div class = "input_div" id ="address" onclick="makeEditable(this)"></div>
+	    	<div class = "input_div" id = "landmark" onclick="makeEditable(this)"></div>
+	    	<span class = "field_tags"  >Pincode*</span>
+	    	<span class = "field_tags"  >Locality*</span>
+	    	<div class = "input_div" id = "pincode" onclick="makeEditable(this)"></div>
+	    	<div class = "input_div" id = "locality" onclick="makeEditable(this)"></div>
+	    	<span class = "field_tags"  >State*</span>
+	    	<span class = "field_tags" >City*</span>
+	    	<div class = "input_div" id = "state" onclick="makeEditable(this)"></div>
+	    	<div class = "input_div"  id ="city" onclick="makeEditable(this)"></div>
+	    	<div class = "save_profile"><button class = "buttons cursor" onclick = "address()">Save Changes</button></div>
+	    </div>
+	    
+	</section>
+
+	<script type="text/javascript" src="address.js"></script>
+</body>
+</html>

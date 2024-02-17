@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CharmHub</title>
+<link href="CharmHub.css" rel="stylesheet" type="text/css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Allison&family=Barlow+Condensed&family=Bungee+Inline&family=DM+Sans:opsz,wght@9..40,300;9..40,500&family=Diphylleia&family=Fjalla+One&family=Lato:wght@300&family=Lugrasimo&family=M+PLUS+Rounded+1c:wght@100&family=Noto+Sans&family=Poppins:wght@200;300&family=Quattrocento&family=Quicksand:wght@300&family=Roboto:wght@100;500&family=Source+Sans+3:wght@200;400&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/75dcd704e3.js" crossorigin="anonymous"></script>																										
+</head>
+<body class = "Bodyfeatures">
+	<header class = "header-list"> 
+		<span class = "CharmHub">Charmhub</span> 
+		<span class = "myAccount_icons font frontPageHover" id = "homeIcon">
+			<a href = "MyAccount.html">
+				<i class="fa-solid fa-user myAccount_icons" style="color: #f8ffff;"></i>
+			</a>	
+		</span>
+		<span class = "myAccount_icons font frontPageHover" id = "customize" style = "display: none">
+			<a href = "customize.html">
+				<i class="fa-solid fa-user myAccount_icons" style="color: #f8ffff;"></i>
+			</a>	
+		</span>
+		<div class = "userInfo" style = "display: none" id = "features" >
+			<span class = "font cursor homeLogin" id = "showSignUp"><a href = "Login.html" class = "none" id = "changeToLogout">Log in</a></span> 
+		</div>
+	</header>
+	<div class = "addFeatures_container">
+	
+		<div class = "features_option"> 
+			<span class = "eachfeatures"  onclick="showcategory()">Add Category</span>
+			<span class = "eachfeatures"  onclick="showbrand()" >Add Brand</span>
+			<span class = "eachfeatures"  onclick="showproduct()">Add Product</span>
+		</div>
+		
+		<div class = "features_option_container" style = "display: none" id ="show_category">
+			<p class = "category">Category</p>
+			<input type ="text" name ="category" id ="add_category" class = "addCategory" placeholder = "Enter the category">
+			<button class = "buttons cursor add" style = "width: 13%; font-size: 1em; " onclick = "addCategory()">Add</button>
+		</div>
+		
+		<div class = "features_option_container" style = "display: none" id ="show_brand">
+			<p class = "category">Category</p>
+			<select id = "categoryDropDown" class = "addCategory"></select>
+			<p class = "category">Brand</p>
+			<input type ="text" name ="category" class = "addCategory" id = "brand_name" placeholder = "Enter the Brand">
+			<p class = "category">Drop Image</p>
+			<div class = "addCategory" id = "backColor"> <input type="file" id="img"  name="img"></div>
+			<button class = "buttons cursor add"  onclick = "addBrand()" style = "width: 13%; font-size: 1em; " >Add</button>
+		</div>
+		
+		<div class = "features_option_container_2 change_margin" id ="show_product" style = "display: none">
+			<span class = "category_2">Product</span>
+			<span class = "category_2">Price</span>
+			<input type ="text" name ="category" id = "name" class = "addCategory_2" placeholder = "Enter the product name">
+			<input type ="text" name ="category" id = "price" class = "addCategory_2" placeholder = "Enter the product price">
+			<span class = "category_2">Brand</span>
+			<span class = "category_2" onclick = "addBrand()">Category</span>
+			
+			<select id = "brand" class = "addCategory_2"></select>
+			<select id = "category"  class = "addCategory_2" onblur = "brandContent()" ></select>
+			<span class = "category_2">Product image</span>
+			
+			<div class = "addCategory addCategory_2 length" id = "blackColor_2"> <input type="file" id="image"  name="img"></div>
+			<span class = "category_2">Discription</span>
+			
+			<textarea name ="category" id = "discription" class = "addCategory_2 length" placeholder = "Discription about the product"></textarea>
+			<button class = "buttons cursor add add_2" onclick = "addProduct()" style = "width: 13%; font-size: 1em; ">Add</button>
+		</div>
+		
+	</div>
+	<script type="text/javascript" src="product.js"></script>
+</body>
+</html>

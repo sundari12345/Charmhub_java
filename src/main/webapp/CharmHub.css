@@ -1,0 +1,491 @@
+@charset "UTF-8";
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  font-family: 'Poppins', sans-serif;
+}
+
+body{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: #191919;
+}
+
+.click{
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 100%;
+	
+}
+
+.header-list {
+  padding: 20px 0px;
+  background-color: #000000;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-attachment: fixed;
+}
+
+.CharmHub{
+	font-size: 3.3em;
+	font-family: 'Poppins', sans-serif;
+	margin-left: 8.6%;
+	font-weight: bold;
+}
+
+.font{
+	font-size: 1.7em;
+	margin-left: 60%;
+}
+
+.signup{
+	background-color: #191919;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;	
+    padding: 2em 0em;
+    width: 40%;
+    margin-top: 5%;
+}
+
+#createAccount{
+	border: 1px solid #353535;
+	color: #f8ffff;
+	font-size: 1.5em;
+	padding: 15px 20px;
+}
+
+.instruction{
+	padding: 2em 0em;
+}
+
+#email1{
+	background-color: #191919;
+	color: #f8ffff;
+	border: 1px solid #f8ffff;
+	font-size: 1.2em;
+	padding: 5px;
+}
+
+#password1{
+	background-color: #191919;
+	color: #f8ffff;
+	border: 1px solid #f8ffff;
+	font-size: 1.2em;
+	padding: 5px;
+}
+
+#phoneno1{
+	background-color: #191919;
+	color: #f8ffff;
+	border: 1px solid #f8ffff;
+	font-size: 1.2em;
+	padding: 5px;
+}
+
+#check{
+	font-size: 1.2em;
+	padding: 1em 0em;
+}
+
+.buttons{
+	background-color: #191919;
+	border: 1px solid #353535;
+	color: #f8ffff;
+	font-size: 1.5em;
+	padding: 7px 20px;
+	margin-top: 3%;
+}
+
+.buttons:hover{
+	color: #191919;
+	background-color: #f8ffff;
+}
+
+.cursor{
+	cursor: pointer;
+}
+
+.line:hover{
+	border-bottom: 1px solid #f8ffff;;
+}
+
+#email2{
+	background-color: #191919;
+	color: #f8ffff;
+	border: 1px solid #f8ffff;
+	font-size: 1.2em;
+	padding: 5px;
+}
+
+#password2{
+	background-color: #191919;
+	color: #f8ffff;
+	border: 1px solid #f8ffff;
+	font-size: 1.2em;
+	padding: 5px;
+}
+
+#phoneno2{
+	background-color: #191919;
+	color: #f8ffff;
+	border: 1px solid #f8ffff;
+	font-size: 1.2em;
+	padding: 5px;
+}
+
+#login{
+	border: 1px solid #353535;
+	color: #f8ffff;
+	font-size: 1.5em;
+	padding: 15px 20px;
+}
+
+.class{
+	color: #f8ffff;
+}
+
+.myAccount_icons{
+	font-size: 1.5em;
+	color: #f8ffff;
+	margin-left: 7%;
+	margin-right: 5%;
+}
+
+.myAccountPage{
+	background-color: #191919;
+	color: #f8ffff;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	padding-bottom: 5%;
+	padding-top: 2%;
+	padding-left: 10%;
+}
+
+.userInfo{
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	border: 1px solid #565657;
+	padding: 25px 10px;
+	margin: .5% 0%;
+	border-radius: 5px;
+	width: 28.5%;
+	margin-right: 2%;
+}
+
+.icon_controller{
+	margin-left: 5%;
+}
+
+.myFeeds{
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.feeds_heading{
+	font-size: 1.9em;
+	width: 100%;
+	margin-bottom: 2%;
+	font-weight: bold;
+}
+
+.about_icon{
+	font-size: 1.1em;
+}
+
+.feeds_heading-navigation{
+	font-size: 1.1em;
+	width: 100%;
+	margin-bottom: 2%;
+	font-weight: bold;
+}
+
+.my_profile_container{
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 69%;
+	padding: 2%;
+}
+
+.feeds_heading{
+	font-size: 1.7em;
+}
+
+.field_tags{
+	margin: .5% 2%;
+	font-size: 1.3em;
+	width: 46%;
+}
+
+.input_div{
+	width: 46%;
+	padding: 0% 1.7%;
+	background-color: #f6f6f6;
+	margin: 2% 2%;
+	border-radius: 10px;
+	height: 60px;
+	color: #565657;
+	font-size: 1.5em;
+	display: flex;
+	align-items: center;
+	
+}
+
+.Bodyfeatures{
+	background-color: #f6f6f6;
+}
+
+.check_box{
+	border: 1px solid #f6f6f6; 
+	border-radius: 50%;
+	padding: .1% .5%;
+	margin-left: 2%;
+}
+
+.field_tag{
+	margin: 2% 2%;
+	font-size: 1.3em;
+	width: 23.5%;
+}
+
+.dob{
+	width: 50%;
+}
+
+.margin_bottom{
+	margin: 0% 2%;
+	margin-bottom: 3%;
+}
+
+.myProfilePage{
+	justify-content: center;
+}
+
+.save_profile{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+.frontPageHover{
+	margin-left: 60%;
+}
+
+#features{
+	position: absolute;
+	background-color: #191919;
+	left: 75%;
+	top: 9%;
+	width: 11%;
+	padding: .5% 2.5%;
+	margin: 0%;
+}
+
+.homeLogin{
+	margin-left: 0%;
+}
+
+.none{
+	text-decoration: none;
+}
+
+.addFeatures_container{
+	width: 100%;
+	height: 100%;
+	display: flex;
+}
+
+.features_option{
+	height: 80vh;
+	width: 15%;
+	display: flex;
+	flex-direction: column;
+	background-color: #191919;
+	color: #565657;
+	padding: 1.5% 1.5%;
+	border-radius: 15px;
+	font-size: 1.3em;
+	margin: 1% 1%;
+}
+
+.eachfeatures{
+	border-radius: 3px;
+	color: #f6f6f6;
+	border: 1px solid #565657;
+	padding: 5px 2px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 8%;
+	font-size: 1em;
+}
+
+.eachfeatures:hover{
+	color: #191919;
+	background-color: #f8ffff;
+	cursor: pointer;
+}
+
+.features_option_container{
+	height: 80vh;
+	width: 80%;
+	display: flex;
+	flex-direction: column;
+	background-color: #191919;
+	color: #565657;
+	padding-top: 5%;
+	border-radius: 15px;
+	font-size: 1.3em;
+	margin: 1% 1%;
+	padding-left: 10%; 
+	
+}
+
+.category{
+	font-size: 1em;
+	margin-top: 3%;
+}
+
+.category_2{
+	font-size: 1.15em;
+	width: 37%;
+	height: 10%;
+	margin-left: 4%;
+}
+
+.addCategory{
+	width: 37%;
+	padding: .9%;
+	color: #191919;
+	margin-top: 1%;
+	font-size: 1em;
+	border-radius: 7px;
+}
+
+.add{
+	margin-top: 5%;
+	margin-left: 36%;
+}
+
+.change_margin{
+	padding-left: 6%; 
+}
+
+.features_option_container_2{
+	height: 80vh;
+	width: 80%;
+	display: flex;
+	flex-wrap: wrap;
+	background-color: #191919;
+	color: #565657;
+	padding-top: 3.5%;
+	border-radius: 15px;
+	font-size: 1.3em;
+	margin: 1% 1%;
+	padding-left: 5%; 
+	height: 10%;
+}
+
+.addCategory_2{
+	width: 37%;
+	padding: .9%;
+	color: #191919;
+	margin-bottom: 2%;
+	font-size: 1.05em;
+	border-radius: 7px;
+	margin-left: 4%;
+	margin-top: .5%;
+	background-color: #f6f6f6;
+}
+
+.length{
+	width: 78.5%;
+}
+
+.add_2{
+	margin-top: .5%;
+	margin-bottom: 2.5%;
+}
+
+.custom-file-input {
+    display: none;
+}
+
+#img{
+	font-size: 1.05em;
+	color: #191919;
+}
+
+#image{
+	font-size: 1.05em;
+	color: #191919;
+}
+
+
+#backColor{
+	background-color: #f6f6f6;
+}
+
+.optionsForCategory{
+	color: #191919;
+}
+
+.charmhub_poster{
+	width: 100%;
+	height: 55vh;
+	background-image: url('image/brand_image/CHARMHUB-poster.jpeg');
+	background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#brand_visual{
+	background-color: #191919;
+	height: 30vh;
+	width: 100%;
+	padding: 1%;
+	display: flex;
+	padding-left: 9.5%;
+}
+
+.brand_images{
+	height: 19vh;
+	width: 10.5%;
+	border-radius: 50%;
+	margin-right: 1%;
+	justify-content: center;
+	background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#topBrands{
+	color: #f6f6f6;
+	font-size: 2em;
+	width: 95%;
+	padding-top: 3%;
+	padding-left: 3%;
+	margin-left: 4%;
+	padding-bottom: 1%;
+	font-weight: bold;
+}
+
+
+
+

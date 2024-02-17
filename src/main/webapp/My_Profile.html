@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="CharmHub.css" rel="stylesheet" type="text/css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Allison&family=Barlow+Condensed&family=Bungee+Inline&family=DM+Sans:opsz,wght@9..40,300;9..40,500&family=Diphylleia&family=Fjalla+One&family=Lato:wght@300&family=Lugrasimo&family=M+PLUS+Rounded+1c:wght@100&family=Noto+Sans&family=Poppins:wght@200;300&family=Quattrocento&family=Quicksand:wght@300&family=Roboto:wght@100;500&family=Source+Sans+3:wght@200;400&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/75dcd704e3.js" crossorigin="anonymous"></script>
+</head>
+<body>
+	<header class = "header-list"> 
+		<span class = "CharmHub">Charmhub</span> 
+	</header>
+	<section class = "myAccountPage myProfilePage">
+	    <span class = "feeds_heading-navigation">My Account > My Profile</span>
+	    
+	    <div class = "my_profile_container" id = "my_profile_container">
+	        <span class = "feeds_heading margin_bottom">My Profile</span>
+	        <input type = "hidden" name = "profile_id" value = "6" id = "profile_id">
+	        <span class = "field_tags">First Name</span>
+	    	<span class = "field_tags">Last Name</span>
+	    	<div class = "input_div" id = "firstname" onclick="makeEditable(this)"></div>
+	    	<div class = "input_div" id = "lastname" onclick="makeEditable(this)"></div>
+	    	<span class = "field_tags">Phone no*</span>
+	    	<span class = "field_tags">Email Id*</span>
+	    	<div class = "input_div" id = "phoneno" onclick="makeEditable(this)"></div>
+	    	<div class = "input_div" id = "email" onclick="makeEditable(this)"></div>
+	    	<span class = "check_box"><input type = "radio" class = "gender" name = "gender" value = "M" ></span>
+	    	<span class = "field_tag">Male</span>
+	    	<span class = "check_box"><input type = "radio" class = "gender" name = "gender" value = "F" ></span>
+	    	<span class = "field_tag">Female</span>
+	    	<span class = "check_box"><input type = "radio" class = "gender" name = "gender"  value = "NB"></span>
+	    	<span class = "field_tag">Others</span>
+	    	<span class = "field_tags dob" id = "date" onclick="makeEditable(this)">Date of Birth</span>
+	    	<div class = "input_div" id = "DOB" onclick="makeEditable(this)"></div>
+	    	<div class = "save_profile"><button class = "buttons cursor " onclick = "profile()">Save Changes</button></div>
+	    </div>
+	    
+	</section>
+	<script type="text/javascript" src="profile.js">
+	
+	</script>
+	
+</body>
+</html>

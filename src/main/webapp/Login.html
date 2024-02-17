@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CharmHub</title>
+<link href="CharmHub.css" rel="stylesheet" type="text/css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Allison&family=Barlow+Condensed&family=Bungee+Inline&family=DM+Sans:opsz,wght@9..40,300;9..40,500&family=Diphylleia&family=Fjalla+One&family=Lato:wght@300&family=Lugrasimo&family=M+PLUS+Rounded+1c:wght@100&family=Noto+Sans&family=Poppins:wght@200;300&family=Quattrocento&family=Quicksand:wght@300&family=Roboto:wght@100;500&family=Source+Sans+3:wght@200;400&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/75dcd704e3.js" crossorigin="anonymous"></script>																										
+</head>
+<body>
+	<header class = "header-list"> 
+		<span class = "CharmHub">Charmhub</span> 
+	</header>
+	<div class  = "signup" id = "sign" style = "display: block; display: flex;">
+		<div id = "createAccount">Create Account</div>
+		<p class = "instruction">Please enter your Email ID</p>
+		<input type = "email" placeholder = "Enter your Email Id" id = "email1">
+		<p class = "instruction">Please enter your Password</p>
+		<input type = "password" placeholder = "Enter your password" id = "password1">
+		<p class = "instruction">Please enter your Phone no</p>
+		<input type = "text" placeholder = "Enter your phoneno" id = "phoneno1">
+		<button class = "buttons cursor" onclick = "callSignUp()">Submit</button>
+		<p class = "instruction" id = "check">If you have already account ? <span class = "cursor line" id = "showLogIn" onclick = "CallalreadyAccount()">Login</span> </p>
+	</div>
+	
+	<div class  = "signup" id = "log" style = "display: none">
+		<div id = "login">Log In</div>
+		<p class = "instruction">Please enter your Email ID</p>
+		<input type = "email" placeholder = "Enter your Email Id" id = "email2">
+		<p class = "instruction">Please enter your Password</p>
+		<input type = "password" placeholder = "Enter your password" id = "password2">
+		<p class = "instruction">Please enter your Phone no</p>
+		<input type = "text" placeholder = "Enter your phoneno" id = "phoneno2">
+		<button class = "buttons cursor" onclick = "callLogin()">Submit</button>
+	</div>
+	<script type="text/javascript" src="script.js"></script>
+</body>
+</html>
