@@ -81,6 +81,27 @@
 		<servlet-name>productView</servlet-name>
 		<servlet-class>com.user.productView</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>productDetails</display-name>
+		<servlet-name>productDetails</servlet-name>
+		<servlet-class>com.user.productDetails</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>wishListServlet</display-name>
+		<servlet-name>wishListServlet</servlet-name>
+		<servlet-class>com.customer.wishListServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>cartServlet</display-name>
+		<servlet-name>cartServlet</servlet-name>
+		<servlet-class>com.customer.cartServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Addservlet</servlet-name>
 		<url-pattern>/com.login.Addservlet</url-pattern>
@@ -125,6 +146,18 @@
 	<servlet-mapping>
 		<servlet-name>productView</servlet-name>
 		<url-pattern>/com.user.productView</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>productDetails</servlet-name>
+		<url-pattern>/com.user.productDetails</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>wishListServlet</servlet-name>
+		<url-pattern>/com.customer.wishListServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>cartServlet</servlet-name>
+		<url-pattern>/com.customer.cartServlet</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

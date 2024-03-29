@@ -22,6 +22,9 @@ public class Add_product extends HttpServlet implements Servlet {
        
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST"); // You can specify other methods if needed
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type");
 		try {
 			
 			JSONObject json = Session.getSession(request.getCookies());
@@ -42,7 +45,8 @@ public class Add_product extends HttpServlet implements Servlet {
 				return ;
 			}
 		}catch (JSONException e) {
-			e.printStackTrace();
+			
+			response.getWriter().write("something went wrong");
 			System.out.println("something went wrong");
 		}              
 
@@ -50,7 +54,7 @@ public class Add_product extends HttpServlet implements Servlet {
 	}
 
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, NumberFormatException {
 		System.out.println("is in correct class");
 		JSONObject json = Session.getSession(request.getCookies());
 		if(json != null) {
@@ -80,14 +84,18 @@ public class Add_product extends HttpServlet implements Servlet {
 				return ;
 				
 			} catch (JSONException e) {
-				e.printStackTrace();
+				String result = "json error";
+				response.getWriter().write(result);
+//				e.printStackTrace();
 			} catch (Exception e) {
-				e.printStackTrace();
+				String result = "-1";
+				response.getWriter().write(result);
+//				e.printStackTrace();
 			}
 			
+			
 		}
-		String result = "50";
-		response.getWriter().write(result);
+		
 	}
 
 }

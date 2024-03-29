@@ -170,9 +170,11 @@ public class Profile {
 			}
 		
 	    }catch (SQLException e) {
-			e.printStackTrace();
+	    	String result = "wrong sql";
+			return result;
 		} catch (JSONException e) {
-		e.printStackTrace();
+			String result = "json error";
+			return result;
 	    }
 		return json.toString();
   }

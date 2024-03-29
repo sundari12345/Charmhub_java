@@ -7,6 +7,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map.Entry;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.Product.Product;
 import com.Product.Review;
 import com.login.connection;
@@ -38,6 +41,32 @@ public class Customer extends User{
 		this.wishList = new WishList(customer_id);
 		this.customerReviewAboutProducts = this.retriveReviews(customer_id);
 	}
+	
+	public Customer(int user_id, int role_id) {
+		super(user_id, role_id);
+		this.customer_id = retriveCostumerId(user_id);	
+	}
+	
+	public int retriveCostumerId(int user_id) {
+		int customerId = 0;
+		String fetchCostumerId = "SELECT customer_id from Customer where user_id = ?";
+		PreparedStatement preparedStatement;
+		try {
+			preparedStatement = connection.getInstance().connector().prepareStatement(fetchCostumerId);
+			preparedStatement.setInt(1, user_id);
+			ResultSet customer_details = preparedStatement.executeQuery();
+			if(customer_details.next()) {
+				System.out.println(customerId);
+				customerId = customer_details.getInt(1);
+			}
+		} catch (SQLException e) {
+			System.out.println("error customer Id");
+//			e.printStackTrace();
+		}
+		return customerId;
+	}
+	
+	
 
 	public Cart getCart() {
 		return cart;
@@ -71,7 +100,7 @@ public class Customer extends User{
 		this.address = address;
 	}
 	
-	private List<Review> retriveReviews(int customer_id) {
+	public List<Review> retriveReviews(int customer_id) {
 		this.customerReviewAboutProducts = new LinkedList<>();
 		String fetchReviews = "select * from Review r join Customer cus on cus.customer_id = r.customer_id join Product p on p.product_id = r.product_id where cus.customer_id = " + customer_id;
 	  	   try {
@@ -86,14 +115,14 @@ public class Customer extends User{
 		return customerReviewAboutProducts;
 	}
 	
-	private boolean addProductToCart(Product product, Integer quantity) throws Exception {
+	public boolean addProductToCart(Product product, Integer quantity) throws Exception {
 		int rowsAffected = 0;
 		
-		for(Entry<Integer, Product> entry : this.getCart().getCartList().entrySet()) {
-			if(entry.getValue().getProductId() == product.getProductId()) {
-				int oldQuantity = entry.getKey();
-				this.getCart().getCartList().remove(oldQuantity, product);
-				this.getCart().getCartList().put(quantity+oldQuantity, product);
+		for(Entry<Product, Integer> entry : this.getCart().getCartList().entrySet()) {
+			if(entry.getKey().getProductId() == product.getProductId()) {
+				int oldQuantity = entry.getValue();
+				this.getCart().getCartList().remove(product, oldQuantity);
+				this.getCart().getCartList().put(product, quantity+oldQuantity);
 				String updateCartProduct = "UPDATE Cart SET  quantity = ? WHERE product_id = ?"; 
 				try {
 					PreparedStatement preparedStatement = connection.getInstance().connector().prepareStatement(updateCartProduct);
@@ -101,14 +130,15 @@ public class Customer extends User{
 				    preparedStatement.setInt(2, product.getProductId());
 				    rowsAffected = preparedStatement.executeUpdate();
 				} catch (SQLException e) {
+					e.printStackTrace();
 					throw new Exception("something went wrong");
 				}
 				return rowsAffected > 0;
 			}
 		}
 		
-		cart.getCartList().put(quantity, product);
-		String addProductQuerry = "INSERT INTO Cart (quantity, product_id, cusotmer_id) VALUES (?,?,?)";
+		cart.getCartList().put(product, quantity);
+		String addProductQuerry = "INSERT INTO Cart (quantity, product_id, customer_id) VALUES (?,?,?)";
 		try {
 			PreparedStatement preparedStatement = connection.getInstance().connector().prepareStatement(addProductQuerry);
 			preparedStatement.setInt(1, quantity);
@@ -116,13 +146,14 @@ public class Customer extends User{
 	    	preparedStatement.setInt(3, this.getCustomer_id());
 	    	rowsAffected = preparedStatement.executeUpdate();
 		} catch (SQLException e) {
+			e.printStackTrace();
 			throw new Exception("something went wrong");
 		}
     	
 		return rowsAffected > 0;
 	}
 	
-	private boolean deleteProductFromCart(Product product, int quantity) throws Exception {
+	public boolean deleteProductFromCart(Product product, int quantity) throws Exception {
 		int rowsAffected = 0;
 		this.getCart().getCartList().remove(quantity, product);
 		String deleteCartProduct = "DELETE FROM Cart WHERE product_id = "+ product.getProductId();
@@ -135,37 +166,92 @@ public class Customer extends User{
 		return rowsAffected > 0;
 	}
 	
-	private boolean addProductToWishList(Product product) throws Exception {
+	public boolean addProductToWishList(Product product) throws Exception {
 		
 		int rowsAffected = 0;
-		if(!this.getWishList().getWishListProducts().contains(product)) {
-			String addProductQuerryTowishList = "INSERT INTO Cart (product_id, cusotmer_id) VALUES (?,?,?)";
+
+			String addProductQuerryTowishList = "INSERT INTO WishList (product_id, customer_id) VALUES (?,?)";
 			try {
 				PreparedStatement preparedStatement = connection.getInstance().connector().prepareStatement(addProductQuerryTowishList);
-				preparedStatement.setInt(2, product.getProductId());
-		    	preparedStatement.setInt(3, this.getCustomer_id());
+				preparedStatement.setInt(1, product.getProductId());
+		    	preparedStatement.setInt(2, this.getCustomer_id());
 		    	rowsAffected = preparedStatement.executeUpdate();
-		    	if(rowsAffected > 0) {
-		    		this.getWishList().getWishListProducts().add(product);
-		    	}
+		    	
 			} catch (SQLException e) {
+				System.out.println("1");
+//				e.printStackTrace();
 				throw new Exception("something went wrong");
 			}
-	    	
-		}
 		return rowsAffected > 0;
 	}
 	
-	private boolean deleteProductFromWishList(Product product) throws Exception {
+	public String WishListProduct() throws Exception {
+			
+		
+			String productIds = "";
+				String addProductQuerryTowishList = "SELECT product_id from WishList where customer_id = ?";
+				try {
+					PreparedStatement preparedStatement = connection.getInstance().connector().prepareStatement(addProductQuerryTowishList);
+					preparedStatement.setInt(1, this.customer_id);
+			    	
+			    	ResultSet rs =  preparedStatement.executeQuery();
+			    	while(rs.next()) {
+			    		productIds += rs.getInt(1)+"~";
+			    	}
+			    	System.out.println(productIds);
+				} catch (SQLException e) {
+					System.out.println("1");
+					throw new Exception("something went wrong");
+					
+				}
+			return productIds;
+		}
+	
+	
+	public String showWishListProduct() throws Exception {
+		
+		JSONObject json = new JSONObject();
+		String wishList = this.WishListProduct();
+		String [] WishListProduct = wishList.split("~");
+		try {
+			for(int i = 0; i < WishListProduct.length; i++) {
+				int productId = Integer.parseInt(WishListProduct[i]);
+				json.put(productId+"", showProduct(productId));
+				System.out.println(productId); 
+			}
+			json.put("wishListIds", wishList);
+			
+		}catch (SQLException e) {
+			throw new Exception("something went wrong");
+        } 
+		return json.toString();
+		
+	}
+	
+	public String showCartProduct() throws Exception {
+		
+		JSONObject json = new JSONObject();
+		String productQuantity = "";
+		System.out.println(this.getCart().getCartList().toString());
+		for(Entry<Product, Integer> entry : this.getCart().getCartList().entrySet()) {	
+			json.put(entry.getKey().getProductId()+"", showProduct(entry.getKey().getProductId()));
+			productQuantity += entry.getKey().getProductId()+","+entry.getValue()+"~";	
+			System.out.println(productQuantity);
+		}
+		json.put("productQuantity", productQuantity);
+		return json.toString();
+		
+	}
+	
+	public boolean deleteProductFromWishList(Product product) throws Exception {
 		int rowsAffected = 0;
-		String deleteCartProduct = "DELETE FROM Cart WHERE product_id = "+ product.getProductId();
+		String deleteCartProduct = "DELETE FROM WishList WHERE product_id = "+ product.getProductId();
 		try {
 			PreparedStatement preparedStatement = connection.getInstance().connector().prepareStatement(deleteCartProduct);
 	    	rowsAffected = preparedStatement.executeUpdate();
-	    	if(rowsAffected > 0) {
-	    		this.getWishList().getWishListProducts().remove(product);
-	    	}
+	    	
 		} catch (SQLException e) {
+			System.out.println("4");
 			throw new Exception("something went wrong");
 		}
 		return rowsAffected > 0;

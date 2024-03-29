@@ -22,6 +22,9 @@ public class role extends HttpServlet {
  
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST"); // You can specify other methods if needed
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type");
 		String role_id = 4+"";
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
@@ -44,7 +47,8 @@ public class role extends HttpServlet {
             			}
             			
             		} catch (SQLException e) {
-						e.printStackTrace();
+            			String role = "0";
+            			response.getWriter().write(role);
 					}
                 }
             }

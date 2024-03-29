@@ -85,7 +85,7 @@ public class Brand {
 				this.ListOfBrandProduct.add(product);
             }
 		} catch (SQLException e) {
-			e.printStackTrace();
+			return ListOfBrandProduct;
 		}
 		
 		return ListOfBrandProduct;
@@ -100,7 +100,7 @@ public class Brand {
 				this.brandId = brandId.getInt(1);
             }
 		} catch (SQLException e) {
-			e.printStackTrace();
+			return this.brandId;
 		}
 		
 		return this.brandId;

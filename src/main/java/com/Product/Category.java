@@ -63,7 +63,7 @@ public class Category {
 				this.ListOfBrands.add(brand);
             }
 		} catch (SQLException e) {
-			e.printStackTrace();
+			return ListOfBrands;
 		}
 		return ListOfBrands;
 	}
@@ -86,7 +86,7 @@ public class Category {
 				}
             }
 		} catch (SQLException e) {
-			e.printStackTrace();
+			return ListOfBrands;
 		}
 		return ListOfBrands;
 	}
@@ -103,7 +103,9 @@ public class Category {
 				System.out.println(categoryId);
             }
 		} catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			return this.categoryId;
+			
 		}
 		return this.categoryId;
 	}

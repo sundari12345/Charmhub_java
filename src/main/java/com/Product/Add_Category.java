@@ -26,6 +26,9 @@ public class Add_Category extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST"); // You can specify other methods if needed
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type");
 		JSONObject json = Session.getSession(request.getCookies());
 		String result = "50";
 		if(json != null) {
@@ -49,9 +52,10 @@ public class Add_Category extends HttpServlet {
 				response.getWriter().write(result);
 				return;
 			} catch (JSONException e) {
-				e.printStackTrace();
+				result = "json error";
+				response.getWriter().write(result);
 			} catch (Exception e) {
-				e.printStackTrace();
+				response.getWriter().write(result);
 			}
 	   } 
 		response.getWriter().write(result);

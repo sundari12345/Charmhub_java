@@ -50,12 +50,19 @@ function callLogin() {
             var response = this.responseText;
                 var manager = 2+"";
                 if(response == manager){
+					console.log(response);
 					window.location.href = "index.html";
 				}else if (response === welcome) {
                     window.location.href = "index.html";
                 } else if (response === wrong) {
+					document.getElementById("email2").value = "";
+   					document.getElementById("password2").value = "";
+   					document.getElementById("phoneno2").value = "";
                     alert(wrong);
                 } else {
+					document.getElementById("email2").value = "";
+   					document.getElementById("password2").value = "";
+   					document.getElementById("phoneno2").value = "";
                     alert("Something went wrong!! "+response);
                 }
             } 
@@ -84,11 +91,21 @@ function callSignUp() {
             var response = this.responseText;
             
                 if (response === welcome) {
+					window.location.href = "index.html";
                     alert(welcome);
                 } else if (response === wrong) {
-                    alert("This account is already exist");
+
+                    document.getElementById("email1").value = "";
+   					document.getElementById("password1").value = "";
+   					document.getElementById("phoneno1").value = "";
+   					alert("This account is already exist");
+   					
                 } else {
-                    alert("Something went wrong!! "+response);
+                    
+                    document.getElementById("email1").value = "";
+   					document.getElementById("password1").value = "";
+   					document.getElementById("phoneno1").value = "";
+   					alert("Something went wrong!! "+response);
                 }
             } 
     };

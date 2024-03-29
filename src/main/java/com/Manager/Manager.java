@@ -69,6 +69,14 @@ public class Manager extends User{
 			    	preparedStatement.setInt(7, categoryId);
 			    	
 			    	rowsAffected = preparedStatement.executeUpdate();
+			    	preparedStatement = connection.getInstance().connector().prepareStatement("SELECT LAST_INSERT_ID()");
+			    	ResultSet resultSet = preparedStatement.executeQuery();
+		            if (resultSet.next()) {
+		            	rowsAffected = resultSet.getInt(1);
+		                System.out.println("Last inserted ID: " + rowsAffected);
+		            } else {
+		                System.out.println("No auto-incremented ID generated.");
+		            }
 			    	
 				}else {
 					return noBrand;
@@ -79,7 +87,7 @@ public class Manager extends User{
 			}
 	    	
 		}catch (SQLException e) {
-			e.printStackTrace();
+			return rowsAffected;
 		}
 		return rowsAffected;
 	}
@@ -99,8 +107,7 @@ public class Manager extends User{
 				}
 			}
 		} catch (SQLException e) {
-			
-			e.printStackTrace();
+			return brand_id;
 		}
 		
 		return brand_id;
@@ -119,14 +126,15 @@ public class Manager extends User{
 				};
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			return category_id;
 		}
 		
 		return category_id;
 	}
 	
-	public void editProduct(String productName, int price, String imageFilePath, String discription, int brand_id, int category_id, int product_id) {
+	public String editProduct(String productName, int price, String imageFilePath, String discription, int brand_id, int category_id, int product_id) {
 		int rowsAffected = 0;
+		String success = "wrong";
 		try {
 			String editProductQuerry = "UPDATE Product SET  product_name = ?, price = ?, product_image_file_path = ?, discription WHERE brand_id = ? AND category_id = ? And product_id = ?";
 			PreparedStatement preparedStatement = connection.getInstance().connector().prepareStatement(editProductQuerry);
@@ -140,14 +148,17 @@ public class Manager extends User{
 	    	rowsAffected = preparedStatement.executeUpdate();
 	    	if(rowsAffected > 0) {
 	    		this.upateProductToBrandList(productName, price, imageFilePath, discription, brand_id, category_id, product_id);
+	    		success = "success"; 
+	    		return success;
 	    	}
 	    }catch (SQLException e) {
-			e.printStackTrace();
+			return "wrong query";
 		}
 		
+		return success;
 	}
 	
-	private void upateProductToBrandList(String productName, int price, String imageFilePath, String discription, int brand_id, int category_id, int product_id) {
+	private String upateProductToBrandList(String productName, int price, String imageFilePath, String discription, int brand_id, int category_id, int product_id) {
 		for(Category category: this.getListOfCategory()) {
 			if(category.getCategoryId() == category_id) {
 				for(Brand brand: category.getListOfBrands()) {
@@ -158,13 +169,21 @@ public class Manager extends User{
 								product.setPrice(price);
 								product.setDiscription(discription);
 								product.setImageFilePath(imageFilePath);
-								return ;
+								return "success";
+							}
+							else {
+								return "no product found";
 							}
 						}
+					}else {
+						return "no brand found";
 					}
 				}
+			}else {
+				return "no category found";
 			}
 		}
+		return "success";
 	}
 	
 	private int category_name_to_idfromList(String category_name) {
@@ -196,7 +215,7 @@ public class Manager extends User{
 		return brand_id;
 	}
 	
-	public void addProductBrandList(String product_name, int brand_id, int category_id) {
+	public String addProductBrandList(String product_name, int brand_id, int category_id) {
 		String fectchProduct = "select * from Product p join Category c on c.category_id = p.category_id join Brand b on b.brand_id = p.brand_id where p.brand_id = "+brand_id+ "AND p.category_id = " +category_id+ "AND  p.product_name like "+"'"+product_name+"'";
     	try {
 			ResultSet productDetails = connection.getInstance().statement().executeQuery(fectchProduct);
@@ -209,15 +228,16 @@ public class Manager extends User{
 								brand_id = brand.getBrandId();
 								brand.ListOfBrandProduct.add(product);
 							}
-							return ;
+							
 						}
 					}
 				}
 
             }
 		} catch (SQLException e) {
-			e.printStackTrace();
+			return "wrong query";
 		}
+    	return "success";
 	}
 	
 	public boolean removeProduct(int product_id, int brand_id, int category_id) throws Exception{
@@ -233,8 +253,9 @@ public class Manager extends User{
 						for(Brand brand: category.getListOfBrands()) {
 							if(brand.getBrandId() == product.getBrandId()) {
 								brand.ListOfBrandProduct.remove(product);
+								return true;
 							}
-							return true;
+							
 						}
 					}
 				}
@@ -345,21 +366,24 @@ public class Manager extends User{
 			    	int  rowsAffected = preparedStatement2.executeUpdate(); 
 			    	if(rowsAffected > 0) {
 			    		String sucess = "100";
+			    		PreparedStatement preparedstatement3 = connection.getInstance().connector().prepareStatement("SELECT LAST_INSERT_ID()");
+				    	ResultSet resultSet = preparedstatement3.executeQuery();
+			            if (resultSet.next()) {
+			            	sucess = resultSet.getInt(1)+"";
+			                System.out.println("Last inserted ID: " + sucess);
+			            } else {
+			                System.out.println("No auto-incremented ID generated.");
+			            }
 			    		return sucess;
 			    	}
 				}
 			
 		}catch(SQLException e) {
-			e.printStackTrace();
 			throw new Exception("Something went wrong");
 		}
 		String failure = "300";
 		return failure;
 	}
-	
-	
-	
 
-	
 	
 } 

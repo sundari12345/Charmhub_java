@@ -172,11 +172,15 @@ public class Address {
 			else {
 				return "no address";
 			}
-		}catch (SQLException | JSONException e) {
-			e.printStackTrace();
+		}catch (JSONException e) {
 			System.out.println("something went wrong");
+			return "json error";
 		} 
-		return "Something went wrong";
+		catch (SQLException e) {
+			System.out.println("something went wrong");
+			return "json error";
+		} 
+		
 	}
 
 }

@@ -43,12 +43,13 @@ public class Admin {
 				this.ListOfManager.add(new Manager(managersDetails.getInt("user_id"), managerProfile,  managersDetails.getInt("role_id"), managersDetails.getInt("manager_id")));
             }
 		} catch (SQLException e) {
-			e.printStackTrace();
+			return ListOfManager;
+			
 		}
     	return ListOfManager;
     } 
     
-	private Manager addManager(String firstName, String lastName, String phoneNo, String emailId, Date dOB, Object gender2) {
+	public Manager addManager(String firstName, String lastName, String phoneNo, String emailId, Date dOB, Object gender2) {
     	int profile_id = 0;
     	int user_id = 0;
     	int manager_id = 0;
@@ -95,8 +96,8 @@ public class Admin {
 			
     	 newManager = new Manager(user_id, newManagerProfile, manager_id, role_id);
     	} catch (SQLException e) {
-    		System.out.println("something went wrong");
-			e.printStackTrace();
+    		return newManager;
+    		
 		}
     	
     	

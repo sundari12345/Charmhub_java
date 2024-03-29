@@ -3,6 +3,7 @@ package com.Product;
 
 import java.io.BufferedReader;
 
+
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,16 +25,22 @@ public class add_brand extends HttpServlet {
 
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST"); // You can specify other methods if needed
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type");
 		try {
-			
+			System.out.println("starting: 12");
 			JSONObject json = Session.getSession(request.getCookies());
 			if(json != null) {
 				int user_id = json.getInt("user_id");
 				int role_id = json.getInt("role_id");
+				System.out.println("starting: 1");
 				com.user.User user = new com.user.User(user_id, role_id);
 				
 				JSONObject json2 = new JSONObject();
 				String listOfCategory = "";
+				System.out.println(listOfCategory+": 1");
+				
 				System.out.println(user.getListOfCategory());
 				
 				for(Category c: user.getListOfCategory()){
@@ -53,6 +60,9 @@ public class add_brand extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST"); // You can specify other methods if needed
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type");
 		JSONObject json = Session.getSession(request.getCookies());
 		if(json != null) {
 			try {

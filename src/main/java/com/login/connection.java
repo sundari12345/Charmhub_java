@@ -19,8 +19,7 @@ public class connection {
 		if (con == null) {
 			con =  new connection();
 		}
-		
-		
+
         return con;
     }
 	

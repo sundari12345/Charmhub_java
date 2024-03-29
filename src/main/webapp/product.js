@@ -32,7 +32,7 @@ function addBrand() {
     var fileInput = document.getElementById('img');
     var file = fileInput.files[0];
     var brand_image = file.name;
-    uploadImage(file);
+    
     var json = {
 		"category_name": category_name,
 		"brand_name": brand_name,
@@ -42,8 +42,12 @@ function addBrand() {
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var response = this.responseText;
-            if(response == "100"){
+            if(response != "50"){
 	            alert("brand is added succesfully");
+	            uploadImage(file, response);
+	            document.getElementById("categoryDropDown").value = "";
+     			document.getElementById("brand_name").value = "";
+   				document.getElementById('img').value = "";
 	         }
 	         else{
 				 alert("brand is not added");
@@ -57,12 +61,14 @@ function addBrand() {
     xhr.send(JSON.stringify(json));
 }
 
-function uploadImage(file){
+function uploadImage(file, response){
 	console.log(file);
+	console.log(response);
 	if (file) {
 		console.log("upload");
                 var formData = new FormData();
                 formData.append('imageFile', file);
+                formData.append('brand_id', response);
 
                 fetch('/CharmHub/com.Product.commonImageUploader', {
                     method: 'POST',
@@ -87,8 +93,14 @@ function uploadImage(file){
 
 function addCategoryToDropdown(element, content){
 	element.innerHTML = '';
+	
+	var options = document.createElement('option')
+	options.classList.add('optionsForCategory');
+	options.text = "Select an option";
+	element.add(options);
+	
     content.forEach((category) => {
-		var options = document.createElement('option')
+		options = document.createElement('option')
 		options.classList.add('optionsForCategory');
 		options.text = category;
 		element.add(options);
@@ -139,9 +151,12 @@ function addCategory(){
             var response = this.responseText;
             if(response == "100"){
 	            alert("category is added succesfully");
+	            document.getElementById("add_category").value = "";
 	         }
 	         else{
+				 
 				 alert("Category is not added");
+				 document.getElementById("add_category").value = "";
 			 }
               
          } 
@@ -164,7 +179,7 @@ function addProduct(){
     var fileInput = document.getElementById('image');
     var file = fileInput.files[0];
     var product_image = file.name;
-    uploadImage(file);
+    
     var json = {
 		"category_name": category_name,
 		"brand_name": brand_name,
@@ -179,13 +194,33 @@ function addProduct(){
             var response = this.responseText;
             console.log(response)
             if(response != "-1" && response != "0"){
+				
 	            alert("product is added succesfully");
+	            uploadImage(file);
+	            document.getElementById("category").value
+    			document.getElementById("brand").value = "";
+    			document.getElementById("name").value = "";
+    			document.getElementById("price").value = "";
+    			document.getElementById("discription").value = "";
+  				document.getElementById('image').value = "";
 	         }
 	         else if(response != "-1"){
 				 alert("There is no such category found");
+				 document.getElementById("category").value = "";
+    			 document.getElementById("brand").value = "";
+    			 document.getElementById("name").value = "";
+    			 document.getElementById("price").value = "";
+    			 document.getElementById("discription").value = "";
+  				 document.getElementById('image').value = "";
 			 }
 			 else if(response != "0"){
 				 alert("There is no such brand found");
+				 document.getElementById("category").value = "";
+    			 document.getElementById("brand").value = "";
+    			 document.getElementById("name").value = "";
+    			 document.getElementById("price").value = "";
+    			 document.getElementById("discription").value = "";
+  				 document.getElementById('image').value = "";
 			 }
               
          } 

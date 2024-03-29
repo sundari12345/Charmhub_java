@@ -32,9 +32,14 @@ public class Session {
 	                    		json.put("role_id", role_id);
 	                    		System.out.println(user_id);
 	            			}	
-	            		} catch (SQLException | JSONException e) {
-	            			e.printStackTrace();
+	            		} catch (SQLException e) {
+//	            			e.printStackTrace();
+	            			System.out.println("wrong query");
+	            			return json;
+	            		}
+	            		catch (JSONException e) {
 	            			System.out.println("something went wrong");
+	            			return json;
 	            		}
 	                }
 	            }

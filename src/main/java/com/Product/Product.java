@@ -25,6 +25,10 @@ public class Product {
 		BrandId = brandId;
 		CategoryId = categoryId;
 	}
+	
+	public Product(int productId) {
+		this.productId = productId;
+	}
 
 	public Product(String productName, int price, String imageFilePath, String discription) {
 

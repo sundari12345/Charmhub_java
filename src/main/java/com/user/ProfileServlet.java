@@ -30,7 +30,9 @@ public class ProfileServlet extends HttpServlet {
     
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)  {
-		
+		response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST"); // You can specify other methods if needed
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type");
 		System.out.println("profile class:");
 		try {
 			System.out.println("profile class:");
@@ -40,7 +42,7 @@ public class ProfileServlet extends HttpServlet {
 	        while((line = jsonString.readLine()) != null) {
 	        	profileRetrive.append(line);
 	        }
-			SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 			System.out.println("profile class:"+profileRetrive);
 			JSONObject profileContent = new JSONObject(profileRetrive.toString());
 			
@@ -61,19 +63,21 @@ public class ProfileServlet extends HttpServlet {
 			}
 			response.getWriter().write("Profile modified!!");
 		} catch (JSONException e) {
-			System.out.println("something went wrong");
 			e.printStackTrace();
+			System.out.println("something went wrong");
+			
 		} catch (ParseException e) {
-			System.out.println("something went wrong");
 			e.printStackTrace();
+			System.out.println("something went wrong");
 		}
 		 catch (IOException e) {
-				e.printStackTrace();
+			 e.printStackTrace();
+			 System.out.println("something went wrong");
 		}
 		
 	}
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		
 		JSONObject json = Session.getSession(request.getCookies());
 		try {
@@ -85,16 +89,14 @@ public class ProfileServlet extends HttpServlet {
 				response.getWriter().write(result);
 			} else {
 	        	String empty  = "";
-	        	try {
-					response.getWriter().write(empty);
-				} catch (IOException e) {
-					System.out.println("No cookie found");
-				}
+				response.getWriter().write(empty);
 	        }
 		}catch (IOException e) {
-			e.printStackTrace();
+			String empty  = "";
+			response.getWriter().write(empty);
 		} catch (JSONException e) {
-			e.printStackTrace();
+			String empty  = "json error";
+			response.getWriter().write(empty);
 		}
 
 	}

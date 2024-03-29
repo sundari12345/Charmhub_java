@@ -22,6 +22,9 @@ public class AddressServlet extends HttpServlet {
 
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST"); // You can specify other methods if needed
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type");
 		try {
 			JSONObject json = Session.getSession(request.getCookies());
 			if(json != null) {
@@ -32,12 +35,17 @@ public class AddressServlet extends HttpServlet {
 				response.getWriter().write(result);
 			}
 		}catch (JSONException e) {
-			e.printStackTrace();
+			String result = "json error";
+			response.getWriter().write(result);
+			
 		} 
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST"); // You can specify other methods if needed
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
         try {
 			System.out.println("address class:");
@@ -48,15 +56,13 @@ public class AddressServlet extends HttpServlet {
 	        	addressRetrive.append(line);
 	        }
 	        int user_id = 0;
-	        try {
+
     			JSONObject json = Session.getSession(request.getCookies());
     			if(json != null) {
     				user_id = json.getInt("user_id");
     				int role_id = json.getInt("role_id");
     			}
-    		}catch (JSONException e) {
-				e.printStackTrace();
-			} 
+
 			
 			
 			JSONObject addressContent = new JSONObject(addressRetrive.toString());
@@ -72,11 +78,12 @@ public class AddressServlet extends HttpServlet {
 			if(userAddress.editAddress(userAddress))
 				response.getWriter().write("Address modified !!");
 		} catch (JSONException e) {
-			System.out.println("something went wrong");
-			e.printStackTrace();
+			String result = "json error";
+			response.getWriter().write(result);
 		} 
 		 catch (IOException e) {
-				e.printStackTrace();
+			String result = "something went wrong";
+			response.getWriter().write(result);
 		}
 	}
 
